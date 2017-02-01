@@ -1,4 +1,4 @@
-var userSignIn = function(userData) {
+var userSignUp = function(userData) {
 
     console.log(userData);
 
@@ -11,12 +11,12 @@ var userSignIn = function(userData) {
 
     var attributeList = [];
 
-    var dataName = {
-        Name: 'name',
-        Value: userData['name']
+    var dataEmail = {
+        Name: 'email',
+        Value: userData['email']
     };
 
-    var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataName);
+    var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
 
     attributeList.push(attributeName);
 
@@ -33,7 +33,7 @@ var userSignIn = function(userData) {
 $(document).ready(function() {
     $('#signUpSubmit').on('click', function(event){
         event.preventDefault();
-        userSignIn($('#signUp').serializeArray().reduce(function(obj, item) {
+        userSignUp($('#signUp').serializeArray().reduce(function(obj, item) {
             obj[item.name] = item.value;
             return obj;
         }, {}));

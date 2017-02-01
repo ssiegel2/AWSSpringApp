@@ -1,27 +1,45 @@
-var poolData = {
-    UserPoolId: 'us-east-1_n2uS6X7gU',
-    ClientId: '3ggiautleipa5l9m48l63l7f91'
-};
+var userSignIn = function(userData) {
 
-var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    console.log(userData)
 
-var attributeList = [];
+    var authDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(userData);
 
-var dataName = {
-    Name: 'name',
-    Value: 'Sam'
-};
+    var poolData = {
+        UserPoolId: AWS_USER_POOL_ID,
+        ClientId: AWS_CLIENT_ID
+    };
 
-var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataName);
+    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
-attributeList.push(attributeName);
+    var userAuth = {
+        Username : userData['Username'],
+        Pool: userPool
+    };
 
-userPool.signUp('username', 'Password123!', attributeList, null, function(err, result) {
-    if(err) {
-        console.log(err);
-        return;
-    }
-    cognitoUser = result.user;
-    console.log('user name is ' + cognitoUser.getUsername());
+    var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userAuth);
 
+    console.log(cognitoUser);
+
+    cognitoUser.authenticateUser(authDetails, {
+        onSuccess : function(result) {
+            console.log('access token + ' + result.getAccessToken().getJwtToken());
+            /*Use the idToken for Logins Map when Federating User Pools with Cognito Identity or when passing through an Authorization Header to an API Gateway Authorizer*/
+            console.log('idToken + ' + result.idToken.jwtToken);
+        },
+
+        onFailure : function(err) {
+            console.log(err);
+        },
+    });
+
+}
+
+$(document).ready(function() {
+    $('#signInSubmit').on('click', function(event){
+        event.preventDefault();
+        userSignIn($('#signIn').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {}));
+    });
 });

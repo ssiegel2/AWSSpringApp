@@ -11,22 +11,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/cognito.js"></script>
     <script src="js/signup.js"></script>
+    <script src="js/login.js"></script>
+    <script>
+
+    </script>
     <title>Login</title>
 </head>
 <body>
 
     <form id="signUp">
         <p>Sign Up</p>
-        <p>Name: <input id="signInName" name="name" /></p>
+        <p>Email: <input id="signInName" name="email" /></p>
         <p>Username: <input id="signUpUsername" name="username" type="text" /></p>
         <p>Password: <input id="signUpPassword" name="password" type="password" /></p>
         <p><input id="signUpSubmit" type="submit" value="Sign Up" /></p>
     </form>
     <hr />
+    <form id="verify">
+        <p>Verify Account</p>
+        <p>Verification Code: <input id="verifyCode" name="Code" type="number"/></p>
+        <p><input id="verifySubmit" value="Verify"/></p>
+    </form>
+    <hr />
     <form id="signIn">
         <p>Sign In</p>
-        <p>Username: <input id="signInUsername" name="username" type="text" /></p>
-        <p>Password: <input id="signInPassword" name="password" type="password" /></p>
+        <p>Username: <input id="signInUsername" name="Username" type="text" /></p>
+        <p>Password: <input id="signInPassword" name="Password" type="password" /></p>
         <p><input id="signInSubmit" type="submit" value="Sign In" /></p>
     </form>
 
