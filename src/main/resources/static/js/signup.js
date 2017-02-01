@@ -1,6 +1,6 @@
 var userSignUp = function(userData) {
 
-    console.log(userData);
+    var cognitoUser;
 
     var poolData = {
         UserPoolId: AWS_USER_POOL_ID,
@@ -28,9 +28,22 @@ var userSignUp = function(userData) {
         cognitoUser = result.user;
 
     });
+
+    return cognitoUser;
+}
+
+var verify = function(user, code) {
+    user.confirmRegistration(code, true, function(err, result) {
+        if(err) {
+            console.log(err);
+            return;
+        }
+        console.log(result);
+    });
 }
 
 $(document).ready(function() {
+
     $('#signUpSubmit').on('click', function(event){
         event.preventDefault();
         userSignUp($('#signUp').serializeArray().reduce(function(obj, item) {
@@ -38,4 +51,5 @@ $(document).ready(function() {
             return obj;
         }, {}));
     });
+
 });
