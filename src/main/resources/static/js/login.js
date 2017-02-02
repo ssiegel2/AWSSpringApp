@@ -56,6 +56,22 @@ var userSignIn = function(userData) {
 
 }
 
+var signOut = function() {
+    var poolData = {
+        UserPoolId: AWS_USER_POOL_ID,
+        ClientId: AWS_CLIENT_ID
+    };
+
+    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+    var currentUser = userPool.getCurrentUser();
+
+    if(currentUser != null) {
+        currentUser.signOut();
+        window.location = '/'
+    }
+}
+
 $(document).ready(function() {
     $('#signInSubmit').on('click', function(event){
         event.preventDefault();
@@ -63,5 +79,10 @@ $(document).ready(function() {
             obj[item.name] = item.value;
             return obj;
         }, {}));
+    });
+
+    $('#signOutSubmit').on('click', function(event) {
+        event.preventDefault();
+        signOut();
     });
 });
