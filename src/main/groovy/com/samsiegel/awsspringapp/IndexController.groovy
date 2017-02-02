@@ -15,4 +15,9 @@ class IndexController {
         return "index"
     }
 
+    @RequestMapping("/upload")
+    String upload() {
+        return "upload"
+    }
+
 }

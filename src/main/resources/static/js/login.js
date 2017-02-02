@@ -44,6 +44,8 @@ var userSignIn = function(userData) {
                     console.log('Successfully logged!');
                 }
             });
+
+            window.location = '/upload';
         },
 
         onFailure : function(err) {
