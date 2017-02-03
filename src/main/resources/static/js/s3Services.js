@@ -8,13 +8,11 @@ var uploadFile = function(name, file) {
         ClientId: AWS_CLIENT_ID
     };
 
-    var s3 = new AWS.S3({
-        apiVersion: API_VERSION,
-        params : {Bucket: BUCKET_NAME}
-    });
 
     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
     var currentUser = userPool.getCurrentUser();
+
+
 
     if(currentUser != null) {
         currentUser.getSession(function(err, session) {
@@ -24,6 +22,8 @@ var uploadFile = function(name, file) {
             }
             console.log('session validity: ' + session.isValid());
 
+            console.log(AWS_ID_POOL);
+
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId : AWS_ID_POOL,
                 Logins : {
@@ -32,7 +32,21 @@ var uploadFile = function(name, file) {
             });
 
         });
+
+        AWS.config.credentials.refresh((error) => {
+            if (error) {
+                console.error(error);
+            }
+            else {
+                console.log('Successfully logged!');
+            }
+        });
     }
+
+    var s3 = new AWS.S3({
+        apiVersion: API_VERSION,
+        params : {Bucket: BUCKET_NAME}
+    });
 
     s3.upload({
         Key : name,
