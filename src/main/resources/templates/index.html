@@ -10,11 +10,39 @@
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/cognito.js"></script>
+    <!--
     <script src="js/signup.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/verify.js"></script>
-    <script>
+    <script src="js/verify.js"></script>    -->
+    <script src="js/cognitoServices.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#signInSubmit').on('click', function(event){
+                event.preventDefault();
+                userSignIn($('#signIn').serializeArray().reduce(function(obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {}));
+            });
+
+            $('#signUpSubmit').on('click', function(event){
+                event.preventDefault();
+                userSignUp($('#signUp').serializeArray().reduce(function(obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {}));
+            });
+
+            $('#verifySubmit').on('click', function(event){
+                event.preventDefault();
+                verify($('#verify').serializeArray().reduce(function(obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {}));
+            });
+
+        });
     </script>
     <title>Login</title>
 </head>

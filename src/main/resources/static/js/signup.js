@@ -23,16 +23,6 @@ var userSignUp = function(userData) {
 
 }
 
-var verify = function(user, code) {
-    user.confirmRegistration(code, true, function(err, result) {
-        if(err) {
-            console.log(err);
-            return;
-        }
-        console.log(result);
-    });
-}
-
 $(document).ready(function() {
 
     $('#signUpSubmit').on('click', function(event){

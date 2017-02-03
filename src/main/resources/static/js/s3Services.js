@@ -53,14 +53,3 @@ var uploadFile = function(name, file) {
     });
 
 }
-
-$(document).ready(function() {
-
-    $('#uploadSubmit').on('click', function(event){
-        event.preventDefault();
-        var file = $('#uploadInput')[0].files[0];
-        uploadFile(file.name, file);
-    });
-
-
-});

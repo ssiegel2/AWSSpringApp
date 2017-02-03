@@ -10,8 +10,24 @@
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/cognito.js"></script>
-    <script src="js/login.js"></script>
+    <script src="js/cognitoServices.js"></script>
     <script src="js/s3Services.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#uploadSubmit').on('click', function(event){
+                event.preventDefault();
+                var file = $('#uploadInput')[0].files[0];
+                uploadFile(file.name, file);
+            });
+
+            $('#signOutSubmit').on('click', function(event) {
+                event.preventDefault();
+                signOut();
+            });
+        });
+
+    </script>
     <title>Login</title>
 </head>
 <body>
