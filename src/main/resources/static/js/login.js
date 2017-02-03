@@ -4,12 +4,7 @@ var userSignIn = function(userData) {
 
     var authDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(userData);
 
-    var poolData = {
-        UserPoolId: AWS_USER_POOL_ID,
-        ClientId: AWS_CLIENT_ID
-    };
-
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var userPool = getUserPool();
 
     var userAuth = {
         Username : userData['Username'],

@@ -1,13 +1,6 @@
 var userSignUp = function(userData) {
 
-    var cognitoUser;
-
-    var poolData = {
-        UserPoolId: AWS_USER_POOL_ID,
-        ClientId: AWS_CLIENT_ID
-    };
-
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var userPool = getUserPool();
 
     var attributeList = [];
 
@@ -25,11 +18,9 @@ var userSignUp = function(userData) {
             console.log(err);
             return;
         }
-        cognitoUser = result.user;
 
     });
 
-    return cognitoUser;
 }
 
 var verify = function(user, code) {

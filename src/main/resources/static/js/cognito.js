@@ -13,3 +13,14 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 });
 
 AWSCognito.config.region = 'AWS_REGION';
+
+var getUserPool = function() {
+    var poolData = {
+        UserPoolId: AWS_USER_POOL_ID,
+        ClientId: AWS_CLIENT_ID
+    };
+
+    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+    return userPool;
+}

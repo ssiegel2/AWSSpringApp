@@ -3,13 +3,8 @@ var uploadFile = function(name, file) {
     var BUCKET_NAME = 'awsspringapp';
     var API_VERSION = '2012-10-17';
 
-    var poolData = {
-        UserPoolId: AWS_USER_POOL_ID,
-        ClientId: AWS_CLIENT_ID
-    };
+    var userPool = getUserPool();
 
-
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
     var currentUser = userPool.getCurrentUser();
 
 
@@ -20,9 +15,6 @@ var uploadFile = function(name, file) {
                 console.log(err);
                 return;
             }
-            console.log('session validity: ' + session.isValid());
-
-            console.log(AWS_ID_POOL);
 
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId : AWS_ID_POOL,
