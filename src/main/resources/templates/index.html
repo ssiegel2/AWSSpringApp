@@ -8,9 +8,15 @@
     <script src="js/lib/sjcl.js"></script>
     <script src="js/lib/aws-cognito-sdk.min.js"></script>
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <script src="js/awsConstants.js"></script>
     <script src="js/cognitoServices.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
 
     <script>
         $(document).ready(function() {
@@ -30,20 +36,32 @@
 </head>
 <body>
 
-    <form id="signUp">
-        <p>Sign Up</p>
-        <p>Email: <input id="signInName" name="email" /></p>
-        <p>Username: <input id="signUpUsername" name="username" type="text" /></p>
-        <p>Password: <input id="signUpPassword" name="password" type="password" /></p>
-        <p><input id="signUpSubmit" type="submit" value="Sign Up" /></p>
-    </form>
-    <hr />
-    <form id="signIn">
-        <p>Sign In</p>
-        <p>Username: <input id="signInUsername" name="Username" type="text" /></p>
-        <p>Password: <input id="signInPassword" name="Password" type="password" /></p>
-        <p><input id="signInSubmit" type="submit" value="Sign In" /></p>
-    </form>
+    <div id = "mainForm" class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-xs-6 center-block">
+                <form id="signUp">
+                    <div class="form-group">
+                        <p>Sign Up</p>
+                        <p class="inputMargin">Email: <input id="signInName" name="email" class="form-control" /></p>
+                        <p class="inputMargin">Username: <input id="signUpUsername" name="username" type="text" class="form-control" /></p>
+                        <p class="inputMargin">Password: <input id="signUpPassword" name="password" type="password" class="form-control" /></p>
+                        <p class="inputMargin"><input id="signUpSubmit" type="submit" value="Sign Up" class="form-control input-sm" /></p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-6 center-block">
+                <form id="signIn">
+                    <div class="form-group">
+                        <p>Sign In</p>
+                        <p class="inputMargin">Username: <input id="signInUsername" name="Username" type="text" class="form-control" /></p>
+                        <p class="inputMargin">Password: <input id="signInPassword" name="Password" type="password" class="form-control" /></p>
+                        <p class="inputMargin"><input id="signInSubmit" type="submit" value="Sign In" class="form-control input-sm" /></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 </html>
