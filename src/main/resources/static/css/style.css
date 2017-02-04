@@ -3,8 +3,10 @@
     text-align: center;
 }
 
-#verifyUsername {
-    
+#userMessage {
+    display: none;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .inputMargin {

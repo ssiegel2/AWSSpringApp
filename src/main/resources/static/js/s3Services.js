@@ -9,10 +9,12 @@ $(document).ready(function() {
         // update AWS credentials
         currentUser.getSession(function(err, session) {
             if(err) {
-                console.log(err);
+                //console.log(err);
+                errorCheck(err);
                 return;
             }
 
+            AWS.config.credentials.clearCachedId();
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId : AWS_ID_POOL,
                 Logins : {
@@ -25,10 +27,8 @@ $(document).ready(function() {
         // Refresh AWS credentials
         AWS.config.credentials.refresh((error) => {
             if (error) {
-                console.error(error);
-            }
-            else {
-                console.log('Successfully logged!');
+                //console.error(error);
+                errorCheck(error);
             }
         });
     }
@@ -53,10 +53,12 @@ var uploadFile = function(name, file) {
         ACL : 'public-read'
     }, function(err, data) {
         if(err) {
-            console.log('File upload failed', err);
+            //console.log('File upload failed', err);
+            errorCheck(err);
             return;
         }
-        console.log('File upload successful');
+        $('#userMessage').html('File upload successful!');
+        $('#userMessage').show();
     });
 
 }

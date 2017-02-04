@@ -22,22 +22,6 @@
     <script>
         $(document).ready(function() {
 
-            /*$('verify').validate({
-                rules : {
-                    code : {
-                        required : true,
-                        rangelength : [5,5],
-                        number : true
-                    }
-                },
-                submitHandler : function(form) {
-                    verify({
-                        username : $('#verifyUsername').html(),
-                        code : $('#verifyCode').val()
-                    });
-                }
-            });*/
-
             $('#verifySubmit').on('click', function(event){
                 event.preventDefault();
                 verify({
@@ -53,6 +37,7 @@
 <body>
     <div id="mainForm" class="container-fluid">
         <div class="row-fluid">
+            <div id="userMessage"></div>
             <div class="col-xs-6 col-sm-3 center-block">
                 <form id="verify">
                     <div class="form-group">

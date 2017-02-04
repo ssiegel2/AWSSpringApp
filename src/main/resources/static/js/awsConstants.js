@@ -34,3 +34,24 @@ var getFormFields = function(obj, item) {
     obj[item.name] = item.value;
     return obj;
 }
+
+var errorCheck = function(err) {
+    $('#userMessage').html(err.message);
+    $('#userMessage').show();
+}
+
+// get the url querey string params as an object
+var getURLQuereyParams = function() {
+    var query = window.location.search;
+    var paramObj = {}
+
+    var keys = query.substring(1).split('&');
+    keys.reduce(function(obj, param) {
+        var key = param.substring(0, param.indexOf('='));
+        var value = param.substring(param.indexOf('=') + 1)
+        obj[key] = value;
+        return obj;
+    }, paramObj);
+
+    return paramObj;
+}

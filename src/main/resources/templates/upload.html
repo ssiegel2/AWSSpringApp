@@ -37,12 +37,6 @@
                 }
             });
 
-            /*$('#uploadSubmit').on('click', function(event){
-                event.preventDefault();
-                var file = $('#uploadInput')[0].files[0];
-                uploadFile(file.name, file);
-            });*/
-
             $('#signOutSubmit').on('click', function(event) {
                 event.preventDefault();
                 signOut();
@@ -55,6 +49,7 @@
 <body>
     <div id="mainForm" class="container-fluid">
         <div class="row-fluid">
+            <div id="userMessage"></div>
             <div class="col-xs-6 col-sm-3 center-block">
                 <form id="upload">
                     <div class="form-group">
