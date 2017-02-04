@@ -14,6 +14,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 
 AWSCognito.config.region = 'AWS_REGION';
 
+// Get the AWS Cognito User Pool
 var getUserPool = function() {
     var poolData = {
         UserPoolId: AWS_USER_POOL_ID,
@@ -23,4 +24,13 @@ var getUserPool = function() {
     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
     return userPool;
+}
+
+
+// Utility Functions
+
+// get the fields from an html form as an object
+var getFormFields = function(obj, item) {
+    obj[item.name] = item.value;
+    return obj;
 }

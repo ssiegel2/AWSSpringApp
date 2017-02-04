@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.20.min.js"></script>
+    <script src="js/lib/jsbn.js"></script>
+    <script src="js/lib/jsbn2.js"></script>
+    <script src="js/lib/sjcl.js"></script>
+    <script src="js/lib/aws-cognito-sdk.min.js"></script>
+    <script src="js/lib/amazon-cognito-identity.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/awsConstants.js"></script>
+    <script src="js/cognitoServices.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#verifySubmit').on('click', function(event){
+                event.preventDefault();
+                verify({
+                    username : $('#verifyUsername').html(),
+                    code : $('#verifyCode').val()
+                });
+            });
+
+        });
+    </script>
+    <title>Login</title>
+</head>
+<body>
+    <form id="verify">
+        <p>Verify Account</p>
+        <p id = "verifyUsername" th:text="${username}"></p>
+        <p>Verification Code: <input id="verifyCode" name="code" type="text"/></p>
+        <p><input id="verifySubmit" type="submit" value="Verify"/></p>
+    </form>
+    <hr />
+
+</body>
+</html>

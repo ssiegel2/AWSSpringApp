@@ -16,26 +16,12 @@
         $(document).ready(function() {
             $('#signInSubmit').on('click', function(event){
                 event.preventDefault();
-                userSignIn($('#signIn').serializeArray().reduce(function(obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {}));
+                userSignIn($('#signIn').serializeArray().reduce(getFormFields, {}));
             });
 
             $('#signUpSubmit').on('click', function(event){
                 event.preventDefault();
-                userSignUp($('#signUp').serializeArray().reduce(function(obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {}));
-            });
-
-            $('#verifySubmit').on('click', function(event){
-                event.preventDefault();
-                verify($('#verify').serializeArray().reduce(function(obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {}));
+                userSignUp($('#signUp').serializeArray().reduce(getFormFields, {}));
             });
 
         });
@@ -50,13 +36,6 @@
         <p>Username: <input id="signUpUsername" name="username" type="text" /></p>
         <p>Password: <input id="signUpPassword" name="password" type="password" /></p>
         <p><input id="signUpSubmit" type="submit" value="Sign Up" /></p>
-    </form>
-    <hr />
-    <form id="verify">
-        <p>Verify Account</p>
-        <p>Username: <input id="verifyUsername" name="username" type="text" /></p>
-        <p>Verification Code: <input id="verifyCode" name="Code" type="text"/></p>
-        <p><input id="verifySubmit" type="submit" value="Verify"/></p>
     </form>
     <hr />
     <form id="signIn">

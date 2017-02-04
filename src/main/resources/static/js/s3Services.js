@@ -1,5 +1,7 @@
+// Upload a file to AWS s3
 var uploadFile = function(name, file) {
 
+    // s3 Bucket name and api version
     var BUCKET_NAME = 'awsspringapp';
     var API_VERSION = '2012-10-17';
 
@@ -7,9 +9,9 @@ var uploadFile = function(name, file) {
 
     var currentUser = userPool.getCurrentUser();
 
-
-
     if(currentUser != null) {
+
+        // update AWS credentials
         currentUser.getSession(function(err, session) {
             if(err) {
                 console.log(err);
@@ -25,6 +27,7 @@ var uploadFile = function(name, file) {
 
         });
 
+        // Refresh AWS credentials
         AWS.config.credentials.refresh((error) => {
             if (error) {
                 console.error(error);
@@ -35,11 +38,13 @@ var uploadFile = function(name, file) {
         });
     }
 
+    // Get AWS s3 instance
     var s3 = new AWS.S3({
         apiVersion: API_VERSION,
         params : {Bucket: BUCKET_NAME}
     });
 
+    // upload the file to s3
     s3.upload({
         Key : name,
         Body : file,

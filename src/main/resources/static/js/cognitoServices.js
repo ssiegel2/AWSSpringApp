@@ -1,55 +1,56 @@
+// Register a user into AWS Cognito
 var userSignUp = function(userData) {
 
     var userPool = getUserPool();
 
+    // Users require an email address for verification
     var attributeList = [];
 
+    // Email data
     var dataEmail = {
         Name: 'email',
         Value: userData['email']
     };
 
-    var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
+    // Email attribute object
+    var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
 
-    attributeList.push(attributeName);
+    attributeList.push(attributeEmail);
 
+    // Sign the user up for the
     userPool.signUp(userData['username'], userData['password'], attributeList, null, function(err, result) {
         if(err) {
             console.log(err);
             return;
         }
+        window.location = '/verify?username=' + userData['username'];
 
     });
 
 }
 
+// Sign the user into AWS Cognito
 var userSignIn = function(userData) {
 
-    console.log(userData)
-
+    // Get the User Awuthentication Details
     var authDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(userData);
 
     var userPool = getUserPool();
 
+    // User Awuthentication Data
     var userAuth = {
         Username : userData['Username'],
         Pool: userPool
     };
 
+    // Get the User
     var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userAuth);
 
-    console.log(cognitoUser);
-
+    // Sign user in
     cognitoUser.authenticateUser(authDetails, {
         onSuccess : function(result) {
 
-            console.log(result);
-            console.log('access token + ' + result.getAccessToken().getJwtToken());
-            /*Use the idToken for Logins Map when Federating User Pools with Cognito Identity or when passing through an Authorization Header to an API Gateway Authorizer*/
-            console.log('idToken + ' + result.idToken.jwtToken);
-
-
-
+            // Update AWS credentials
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId : AWS_ID_POOL,
                 Logins : {
@@ -57,6 +58,7 @@ var userSignIn = function(userData) {
                 }
             });
 
+            // refresh AWS credentials
             AWS.config.credentials.refresh((error) => {
                 if (error) {
                     console.error(error);
@@ -65,6 +67,7 @@ var userSignIn = function(userData) {
                 }
             });
 
+            // Redirect to s3 upload page
             window.location = '/upload';
         },
 
@@ -76,39 +79,35 @@ var userSignIn = function(userData) {
 
 }
 
+// Verify user via email using confirmation code
 var verify = function(userData) {
-    var poolData = {
-        UserPoolId: AWS_USER_POOL_ID,
-        ClientId: AWS_CLIENT_ID
-    };
 
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var userPool = getUserPool();
 
+    // User Awuthentication Data
     var userAuth = {
         Username : userData['username'],
         Pool: userPool
     };
 
+    // Get user
     var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userAuth);
 
-    console.log(userData);
-
-    cognitoUser.confirmRegistration(userData['Code'], true, function(err, result) {
+    // Confirm user registration using confirmation code
+    cognitoUser.confirmRegistration(userData['code'], true, function(err, result) {
         if(err) {
             console.log(err);
             return;
         }
         console.log(result);
+        window.location = '/'
     });
 }
 
+// Sign the user out
 var signOut = function() {
-    var poolData = {
-        UserPoolId: AWS_USER_POOL_ID,
-        ClientId: AWS_CLIENT_ID
-    };
 
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var userPool = getUserPool();
 
     var currentUser = userPool.getCurrentUser();
 
