@@ -10,6 +10,7 @@
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -20,14 +21,40 @@
 
     <script>
         $(document).ready(function() {
-            $('#signInSubmit').on('click', function(event){
-                event.preventDefault();
-                userSignIn($('#signIn').serializeArray().reduce(getFormFields, {}));
+
+            $('#signUp').validate({
+                rules : {
+                        email : {
+                            required : true,
+                            email : true
+                        },
+                        username : {
+                            required : true
+                        },
+                        password : {
+                            required : true,
+                            minlength : 8,
+                        }
+                },
+                submitHandler : function(form) {
+                    userSignUp($(form).serializeArray().reduce(getFormFields, {}));
+                }
             });
 
-            $('#signUpSubmit').on('click', function(event){
-                event.preventDefault();
-                userSignUp($('#signUp').serializeArray().reduce(getFormFields, {}));
+            $('#signIn').validate({
+                rules : {
+                    Username : {
+                        required : true
+                    },
+                    Password : {
+                        required : true,
+                        minlength : 8
+                    }
+                },
+                submitHandler : function(form) {
+                    userSignIn($(form).serializeArray().reduce(getFormFields, {}));
+                }
+
             });
 
         });

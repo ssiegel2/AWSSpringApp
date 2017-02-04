@@ -9,6 +9,8 @@
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -19,6 +21,22 @@
 
     <script>
         $(document).ready(function() {
+
+            /*$('verify').validate({
+                rules : {
+                    code : {
+                        required : true,
+                        rangelength : [5,5],
+                        number : true
+                    }
+                },
+                submitHandler : function(form) {
+                    verify({
+                        username : $('#verifyUsername').html(),
+                        code : $('#verifyCode').val()
+                    });
+                }
+            });*/
 
             $('#verifySubmit').on('click', function(event){
                 event.preventDefault();

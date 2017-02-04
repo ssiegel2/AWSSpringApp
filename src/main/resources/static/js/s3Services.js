@@ -1,9 +1,4 @@
-// Upload a file to AWS s3
-var uploadFile = function(name, file) {
-
-    // s3 Bucket name and api version
-    var BUCKET_NAME = 'awsspringapp';
-    var API_VERSION = '2012-10-17';
+$(document).ready(function() {
 
     var userPool = getUserPool();
 
@@ -37,6 +32,13 @@ var uploadFile = function(name, file) {
             }
         });
     }
+});
+
+// Upload a file to AWS s3
+var uploadFile = function(name, file) {
+    // s3 Bucket name and api version
+    var BUCKET_NAME = 'awsspringapp';
+    var API_VERSION = '2012-10-17';
 
     // Get AWS s3 instance
     var s3 = new AWS.S3({

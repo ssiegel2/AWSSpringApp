@@ -10,6 +10,8 @@
     <script src="js/lib/amazon-cognito-identity.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -22,11 +24,24 @@
     <script>
 
         $(document).ready(function() {
-            $('#uploadSubmit').on('click', function(event){
+
+            $('#upload').validate({
+                rules : {
+                    file : {
+                        required : true
+                    }
+                },
+                submitHandler : function(form) {
+                    var file = $('#uploadInput')[0].files[0];
+                    uploadFile(file.name, file);
+                }
+            });
+
+            /*$('#uploadSubmit').on('click', function(event){
                 event.preventDefault();
                 var file = $('#uploadInput')[0].files[0];
                 uploadFile(file.name, file);
-            });
+            });*/
 
             $('#signOutSubmit').on('click', function(event) {
                 event.preventDefault();
@@ -43,7 +58,7 @@
             <div class="col-xs-6 col-sm-3 center-block">
                 <form id="upload">
                     <div class="form-group">
-                        <p class="inputMargin"><input id="uploadInput" type="file" class="form-control"/></p>
+                        <p class="inputMargin"><input id="uploadInput" type="file" name="file" class="form-control"/></p>
                         <p class="inputMargin"><input id="uploadSubmit" type="submit" value="Upload File" class="form-control btn-primary input-sm"/></p>
                     </div>
                 </form>
