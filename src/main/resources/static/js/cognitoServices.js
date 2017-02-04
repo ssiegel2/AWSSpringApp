@@ -27,7 +27,6 @@ var userSignUp = function(userData) {
     // Sign the user up for the
     userPool.signUp(userData['username'], userData['password'], attributeList, null, function(err, result) {
         if(err) {
-            //console.log(err);
             errorCheck(err);
             return;
         }
@@ -71,10 +70,7 @@ var userSignIn = function(userData) {
             // refresh AWS credentials
             AWS.config.credentials.refresh((error) => {
                 if (error) {
-                    //console.error(error);
                     errorCheck(error);
-                } else {
-                    console.log('Successfully logged!');
                 }
             });
 
@@ -83,7 +79,6 @@ var userSignIn = function(userData) {
         },
 
         onFailure : function(err) {
-            //aconsole.log(err);
             errorCheck(err);
         },
     });
@@ -108,11 +103,9 @@ var verify = function(userData) {
     // Confirm user registration using confirmation code
     cognitoUser.confirmRegistration(userData['code'], true, function(err, result) {
         if(err) {
-            //console.log(err);
             errorCheck(err);
             return;
         }
-        console.log(result);
         window.location = '/?verify=true'
     });
 }

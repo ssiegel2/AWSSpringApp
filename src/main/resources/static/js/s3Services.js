@@ -16,7 +16,6 @@ $(document).ready(function() {
         // update AWS credentials
         currentUser.getSession(function(err, session) {
             if(err) {
-                //console.log(err);
                 errorCheck(err);
                 return;
             }
@@ -34,7 +33,6 @@ $(document).ready(function() {
         // Refresh AWS credentials
         AWS.config.credentials.refresh((error) => {
             if (error) {
-                //console.error(error);
                 errorCheck(error);
             }
         });
@@ -60,7 +58,6 @@ var uploadFile = function(name, file) {
         ACL : 'public-read'
     }, function(err, data) {
         if(err) {
-            //console.log('File upload failed', err);
             errorCheck(err);
             return;
         }
