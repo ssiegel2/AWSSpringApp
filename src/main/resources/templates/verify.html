@@ -15,6 +15,7 @@
 
     <script src="js/awsConstants.js"></script>
     <script src="js/cognitoServices.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
 
     <script>
         $(document).ready(function() {
@@ -32,13 +33,20 @@
     <title>Login</title>
 </head>
 <body>
-    <form id="verify">
-        <p>Verify Account</p>
-        <p id = "verifyUsername" th:text="${username}"></p>
-        <p>Verification Code: <input id="verifyCode" name="code" type="text"/></p>
-        <p><input id="verifySubmit" type="submit" value="Verify"/></p>
-    </form>
-    <hr />
+    <div id="mainForm" class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-xs-6 col-sm-3 center-block">
+                <form id="verify">
+                    <div class="form-group">
+                        <p class="labelForm">Verify Account</p>
+                        <p id = "verifyUsername" th:text="${username}"></p>
+                        <p class="inputMargin">Verification Code: <input id="verifyCode" name="code" type="text" class="form-control"/></p>
+                        <p><input id="verifySubmit" type="submit" value="Verify" class="form-control btn-primary input-sm"/></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

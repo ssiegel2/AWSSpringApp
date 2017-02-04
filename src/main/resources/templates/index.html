@@ -16,7 +16,7 @@
 
     <script src="js/awsConstants.js"></script>
     <script src="js/cognitoServices.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <script>
         $(document).ready(function() {
@@ -38,24 +38,24 @@
 
     <div id = "mainForm" class="container-fluid">
         <div class="row-fluid">
-            <div class="col-xs-6 center-block">
+            <div class="col-xs-6 col-sm-3 center-block">
                 <form id="signUp">
                     <div class="form-group">
-                        <p>Sign Up</p>
+                        <p class="labelForm">Sign Up</p>
                         <p class="inputMargin">Email: <input id="signInName" name="email" class="form-control" /></p>
                         <p class="inputMargin">Username: <input id="signUpUsername" name="username" type="text" class="form-control" /></p>
                         <p class="inputMargin">Password: <input id="signUpPassword" name="password" type="password" class="form-control" /></p>
-                        <p class="inputMargin"><input id="signUpSubmit" type="submit" value="Sign Up" class="form-control input-sm" /></p>
+                        <p class="inputMargin"><input id="signUpSubmit" type="submit" value="Sign Up" class="form-control btn-primary input-sm" /></p>
                     </div>
                 </form>
             </div>
-            <div class="col-xs-6 center-block">
+            <div class="col-xs-6 col-sm-3 center-block">
                 <form id="signIn">
                     <div class="form-group">
-                        <p>Sign In</p>
+                        <p class="labelForm">Sign In</p>
                         <p class="inputMargin">Username: <input id="signInUsername" name="Username" type="text" class="form-control" /></p>
                         <p class="inputMargin">Password: <input id="signInPassword" name="Password" type="password" class="form-control" /></p>
-                        <p class="inputMargin"><input id="signInSubmit" type="submit" value="Sign In" class="form-control input-sm" /></p>
+                        <p class="inputMargin"><input id="signInSubmit" type="submit" value="Sign In" class="form-control btn-primary input-sm" /></p>
                     </div>
                 </form>
             </div>

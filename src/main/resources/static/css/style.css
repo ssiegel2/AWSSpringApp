@@ -1,0 +1,17 @@
+#mainForm {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#verifyUsername {
+    
+}
+
+.inputMargin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+p.labelForm {
+    font-size: 16px;
+}

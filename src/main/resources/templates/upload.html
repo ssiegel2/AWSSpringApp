@@ -17,6 +17,8 @@
     <script src="js/awsConstants.js"></script>
     <script src="js/cognitoServices.js"></script>
     <script src="js/s3Services.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+
     <script>
 
         $(document).ready(function() {
@@ -36,14 +38,22 @@
     <title>Login</title>
 </head>
 <body>
-
-    <form id="upload">
-        <p><input id="uploadInput" type="file" /></p>
-        <p><input id="uploadSubmit" type="submit" value="Upload File" /></p>
-    </form>
-    <form id="signOut">
-        <p><input id="signOutSubmit" type="submit" value="Sign Out" /></p>
-    </form>
-
+    <div id="mainForm" class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-xs-6 col-sm-3 center-block">
+                <form id="upload">
+                    <div class="form-group">
+                        <p class="inputMargin"><input id="uploadInput" type="file" class="form-control"/></p>
+                        <p class="inputMargin"><input id="uploadSubmit" type="submit" value="Upload File" class="form-control btn-primary input-sm"/></p>
+                    </div>
+                </form>
+                <form id="signOut">
+                    <div class="form-group">
+                        <p class="inputMargin"><input id="signOutSubmit" type="submit" value="Sign Out" class="form-control btn-primary input-sm" /></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
