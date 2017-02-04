@@ -1,3 +1,10 @@
+/*
+    AWSSpringApp
+    s3Services.js
+
+    Sam Siegel
+
+*/
 $(document).ready(function() {
 
     var userPool = getUserPool();

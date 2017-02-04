@@ -1,3 +1,10 @@
+/*
+    AWSSpringApp
+    awsConstants.js
+
+    Sam Siegel
+
+*/
 // Declare Constants
 AWS_REGION = 'us-east-1';
 AWS_ID_POOL = 'us-east-1:9f63f2ad-0f3a-4e01-af28-f46e0c765242';
@@ -35,6 +42,7 @@ var getFormFields = function(obj, item) {
     return obj;
 }
 
+// display error to user
 var errorCheck = function(err) {
     $('#userMessage').html(err.message);
     $('#userMessage').show();

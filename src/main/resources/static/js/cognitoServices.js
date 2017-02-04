@@ -1,3 +1,10 @@
+/*
+    AWSSpringApp
+    cognitoServices.js
+
+    Sam Siegel
+
+*/
 // Register a user into AWS Cognito
 var userSignUp = function(userData) {
 
